@@ -1,8 +1,7 @@
-FROM openjdk:8-jdk-alpine
-VOLUME /tmp
+FROM mysql
+MAINTAINER csgeek@mail.com
 
-ADD target/devOpsDemo-0.0.1-SNAPSHOT.jar app.jar
+ENV MYSQL_ROOT_PASSWORD jsppassword
+ADD jsp_backup.sql /docker-entrypoint-initdb.d
 
-ENTRYPOINT ["java","-jar","app.jar"]
-
-EXPOSE 2222
+EXPOSE 3306
